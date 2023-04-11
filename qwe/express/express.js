@@ -3,8 +3,8 @@ const Router = require("./router");
 const methods = require("methods");
 
 function createApplication() {
-  app = function (req, res, next = () => {}) {
-    app._router.handle(req, res, next);
+  app = function (req, res) {
+    app._router.handle(req, res);
   };
 
   app.listen = function listen(...args) {

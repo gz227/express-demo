@@ -15,13 +15,12 @@ Router.prototype.route = function (path) {
 };
 
 // 遍历所有layer，匹配path，执行handle
-Router.prototype.handle = function (req, res, out) {
+Router.prototype.handle = function (req, res) {
   const { pathname } = url.parse(req.url);
 
   let index = 0;
   const next = () => {
-    // res.end(`Can not get ${pathname}`)
-    if (index >= this.stack.length) return out();
+    if (index >= this.stack.length) return res.end(`Can not get ${pathname}`);
     const layer = this.stack[index++];
     const match = layer.match(pathname);
     if (match) {
